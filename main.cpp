@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 int main(void) {
@@ -18,6 +19,11 @@ int main(void) {
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+
+    if (glewInit() != GLEW_OK)
+        printf("Error!\n");
+    
+    printf("%s\n", reinterpret_cast<const char*>(glGetString(GL_VERSION)) );
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
